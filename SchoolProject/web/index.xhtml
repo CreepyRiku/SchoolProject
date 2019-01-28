@@ -1,11 +1,33 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>E-Voting</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <div align="center">
+            <h1>Login</h1>
+            <h:form id="loginForm">
+                <h:panelGrid columns="2">
+                    <f:facet name="header">
+                        <h:selectOneMenu value="">
+                            <f:selectItems value=""/>
+                        </h:selectOneMenu>
+                    </f:facet>
+                    
+                    <h:outputLabel value="Username"/>
+                    <h:inputText value="#{user}"/>
+                    
+                    <h:outputLabel value="Password"/>
+                    <h:inputSecret value="#{pass}"/>
+                    
+                    <f:facet name="footer">
+                        <h:commandButton action=""/>
+                    </f:facet>
+                </h:panelGrid>
+            </h:form>
+        </div>
     </h:body>
 </html>
