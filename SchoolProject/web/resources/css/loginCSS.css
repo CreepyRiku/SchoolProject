@@ -1,0 +1,27 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 29, 2019, 4:05:48 PM
+    Author     : JulianGanster
+*/
+
+.error{
+    color: red;
+}
+
+.pw{
+    margin: 2px 2px 2xp;
+}
+
+.pw:hover{
+    cursor: pointer;
+}
+
+.pw:hover:after{
+    display:compact;
+    content: 'Kontaktieren Sie Ihren Serveradministrator.';
+    transition-duration: 3;
+}

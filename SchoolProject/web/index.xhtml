@@ -5,6 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>E-Voting</title>
+        <h:outputStylesheet name="css/loginCSS.css" />
     </h:head>
     <h:body>
         <div align="center">
@@ -12,21 +13,25 @@
             <h:form id="loginForm">
                 <h:panelGrid columns="2">
                     <f:facet name="header">
-                        <h:selectOneMenu value="">
-                            <f:selectItems value=""/>
+                        <h:selectOneMenu value="#{loginBean.selectedSchool}">
+                            <f:selectItems value="#{loginBean.schoolList}"/>
                         </h:selectOneMenu>
                     </f:facet>
                     
                     <h:outputLabel value="Username"/>
-                    <h:inputText value="#{user}"/>
+                    <h:inputText value="#{loginBean.user}" converter="#{userConverter}"/>
                     
                     <h:outputLabel value="Password"/>
                     <h:inputSecret value="#{pass}"/>
                     
                     <f:facet name="footer">
-                        <h:commandButton action=""/>
+                        <div align="center">
+                            <h:commandButton action="#{loginBean.authenticate(pass)}" value="Login"/>
+                            <h:outputText value="Passwort vergessen?" class="pw"/>
+                        </div>
                     </f:facet>
                 </h:panelGrid>
+                <h:outputText value="#{loginBean.errorMsg}" class="error"/>
             </h:form>
         </div>
     </h:body>

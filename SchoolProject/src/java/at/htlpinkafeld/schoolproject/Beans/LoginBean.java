@@ -6,17 +6,30 @@
 package at.htlpinkafeld.schoolproject.Beans;
 
 import at.htlpinkafeld.schoolproject.POJO.Schools;
+import at.htlpinkafeld.schoolproject.POJO.User;
+import at.htlpinkafeld.schoolproject.Services.Service;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
-public class TempBean {
-    private List<SelectItem> schoolList = new ArrayList<>();
+public class LoginBean {
+    private Service<User> srv;
     private String selectedSchool,
-                   user;
+                   errorMsg = "";
+    private User user;
     
-    public TempBean() {
+    public LoginBean() {
         selectedSchool = Schools.values()[0].getName();
+    }
+
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    public void setSrv(Service<User> srv) {
+        this.srv = srv;
     }
     
     public List<SelectItem> getSchoolList(){
@@ -34,15 +47,24 @@ public class TempBean {
         this.selectedSchool = selectedSchool;
     }
 
-    public String getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(String user) {
+    public void setUser(User user) {
         this.user = user;
     }
     
     public void authenticate(String pwd){
-        
+        if(user==null)
+            errorMsg = "Loginname unbekannt!";
+        else
+            if(user.authenticate(pwd)){
+                errorMsg="";
+                try {
+                    FacesContext.getCurrentInstance().getExternalContext().dispatch("/voting.xhtml");
+                } catch (IOException ex) {}
+            }else
+                errorMsg = "Falsches Loginpasswort!";
     }
 }

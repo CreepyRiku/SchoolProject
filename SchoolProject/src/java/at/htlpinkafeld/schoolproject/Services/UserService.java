@@ -6,12 +6,12 @@
 
 package at.htlpinkafeld.schoolproject.Services;
 
-import at.htlpinkafeld.schoolproject.DTOs.SQLUserDAO;
+import at.htlpinkafeld.schoolproject.DTOs.DAO;
 import at.htlpinkafeld.schoolproject.POJO.User;
 import java.util.List;
 
 public class UserService implements Service<User>{
-    private SQLUserDAO dao;
+    private DAO<User> dao;
     
     @Override
     public List<User> getList() {
@@ -19,9 +19,11 @@ public class UserService implements Service<User>{
     }
 
     @Override
-    public User get(Integer idx) {
-        return dao.get(idx);
+    public User get(Integer id) {
+       for(User each : dao.getList())
+            if(each.getId().equals(id))
+                return each;
+        return null;
     }
 
-    
 }

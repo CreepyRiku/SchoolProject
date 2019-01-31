@@ -6,13 +6,24 @@
 
 package at.htlpinkafeld.schoolproject.POJO;
 
+import at.htlpinkafeld.schoolproject.util.PBKDF2WithHmacSHA512;
+
 public class User {
+   private Integer id;
    private String user,
                   className,
                   dept;
    private byte[] hash,
                   salt;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+   
     public String getUser() {
         return user;
     }
@@ -53,12 +64,21 @@ public class User {
         this.dept = dept;
     }
 
-    public User(String user, String className, String dept, byte[] hash, byte[] salt) {
+    public User(Integer id,String user, String className, String dept, byte[] hash, byte[] salt) {
+        this.id=id;
         this.user = user;
         this.className = className;
         this.dept = dept;
         this.hash = hash;
         this.salt = salt;
     }
-
+    
+    public boolean authenticate(String attemptedPwd){
+       try {
+           return PBKDF2WithHmacSHA512.authenticate(attemptedPwd, salt, hash);
+       } catch (Exception ex) {
+           System.out.println("Autentication Error: " + ex);
+       }
+       return false;
+    }
 }

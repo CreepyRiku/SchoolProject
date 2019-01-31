@@ -36,12 +36,12 @@ public class SQLUserDAO implements DAO<User>{
             ResultSet set = con.createStatement().executeQuery("select count(*) from pupil");
             if(set.getInt(1) != uList.size()){
                 uList = new ArrayList<>();
-                set = con.createStatement().executeQuery("select name,class,department,pwd from pupil");
+                set = con.createStatement().executeQuery("select id,name,class,department,pwd from pupil");
                 while (set.next()){
                     try {
                         byte [] salt;
                         salt = PBKDF2WithHmacSHA512.salt();
-                        uList.add(new User(set.getString(1),set.getString(2),set.getString(3),PBKDF2WithHmacSHA512.hash(set.getString(4), salt),salt));
+                        uList.add(new User(set.getInt(1),set.getString(2),set.getString(3),set.getString(4),PBKDF2WithHmacSHA512.hash(set.getString(5), salt),salt));
                     } catch (Exception ex) {
                         System.out.println("User Password Cipher Error:" + ex);
                     }
