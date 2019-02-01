@@ -9,8 +9,6 @@ package at.htlpinkafeld.schoolproject.DTOs;
 import at.htlpinkafeld.schoolproject.POJO.User;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.naming.directory.DirContext;
@@ -35,10 +33,12 @@ public class LDAPUserDAO implements DAO<User>{
     
     @Override
     public List<User> getList() {
+        return null;
     }
 
     @Override
     public User get(Integer idx) {
+        return null;
     }
     
 }
