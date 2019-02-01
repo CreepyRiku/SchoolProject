@@ -27,10 +27,11 @@
                     <f:facet name="footer">
                         <div align="center">
                             <h:commandButton action="#{loginBean.authenticate(pass)}" value="Login"/>
-                            <h:outputText value="Passwort vergessen?" class="pw"/>
+                            <h:outputLink class="pw" value="pwForgotten.xhtml">Passwort vergessen?</h:outputLink>
                         </div>
                     </f:facet>
                 </h:panelGrid>
+                <br/>
                 <h:outputText value="#{loginBean.errorMsg}" class="error"/>
             </h:form>
         </div>

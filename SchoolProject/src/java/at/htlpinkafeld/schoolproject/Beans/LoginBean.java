@@ -57,7 +57,7 @@ public class LoginBean {
     
     public void authenticate(String pwd){
         if(user==null)
-            errorMsg = "Loginname unbekannt!";
+            errorMsg = "User nicht in dieser Schule!";
         else
             if(user.authenticate(pwd)){
                 errorMsg="";

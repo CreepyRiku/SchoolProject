@@ -13,15 +13,5 @@ and open the template in the editor.
 }
 
 .pw{
-    margin: 2px 2px 2xp;
-}
-
-.pw:hover{
-    cursor: pointer;
-}
-
-.pw:hover:after{
-    display:compact;
-    content: 'Kontaktieren Sie Ihren Serveradministrator.';
-    transition-duration: 3;
+    margin-left: 10px;
 }
