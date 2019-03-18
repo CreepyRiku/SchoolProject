@@ -5,6 +5,7 @@
  */
 package at.htlpinkafeld.schoolproject.DTOs;
 
+import at.htlpinkafeld.schoolproject.POJO.User;
 import java.util.List;
 
 /**
@@ -12,6 +13,10 @@ import java.util.List;
  * @author JulianGanster
  */
 public interface DAO<T> {
-    public List<T> getList();
-    public T get(Integer idx);
+    public User getPupil(String user);
+    public User getTeacher(String user);
+    public List<User> getPupilList();
+    public List<User> getTeacherList();
+    public Boolean authenticate(User u,String attemptedPwd);
+    public void refresh();
 }

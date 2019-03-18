@@ -6,37 +6,21 @@
 
 package at.htlpinkafeld.schoolproject.POJO;
 
+import at.htlpinkafeld.schoolproject.Services.Service;
 import at.htlpinkafeld.schoolproject.util.PBKDF2WithHmacSHA512;
 
 public enum Schools {
-    HTLuVa_Pinkafeld("HTLuVa Pinkafeld","hostname","user","pwd");
+    HTLuVa_Pinkafeld("HTLuVa Pinkafeld");
     
-    private String name,
-                   hostname,
-                   user,
-                   pwd;
-
+    private String name;
+    private Service accSrv;
+    
     public String getName() {
         return name;
     }
 
-    public String getHostname() {
-        return hostname;
-    }
-    
-    public String getUser(){
-        return user;
-    }
-    
-    public String getPwd(){
-        return pwd;
-    }
-    
-    private Schools(String name,String hostname,String user, String pwd){
+    private Schools(String name){
         this.name=name;
-        this.hostname=hostname;
-        this.user=user;
-        this.pwd=pwd;
     }
     
     public static Schools getByName(String name){

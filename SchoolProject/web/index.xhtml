@@ -19,7 +19,7 @@
                     </f:facet>
                     
                     <h:outputLabel value="Username"/>
-                    <h:inputText value="#{loginBean.user}" converter="#{userConverter}"/>
+                    <h:inputText immediate="true" value="#{loginBean.user}"/>
                     
                     <h:outputLabel value="Password"/>
                     <h:inputSecret value="#{pass}"/>

@@ -6,23 +6,13 @@
 
 package at.htlpinkafeld.schoolproject.POJO;
 
-import at.htlpinkafeld.schoolproject.util.PBKDF2WithHmacSHA512;
-
 public class User {
-   private Integer id;
    private String user,
+                  email,
                   className,
-                  dept;
-   private byte[] hash,
-                  salt;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+                  dept,
+                  name;
+   private Role role;
    
     public String getUser() {
         return user;
@@ -31,23 +21,15 @@ public class User {
     public void setUser(String user) {
         this.user = user;
     }
-
-    public byte[] getHash() {
-        return hash;
+    
+    public String getEmail(){
+        return email;
     }
-
-    public void setHash(byte[] hash) {
-        this.hash = hash;
+    
+    public void setEmail(String email){
+        this.email=email;
     }
-
-    public byte[] getSalt() {
-        return salt;
-    }
-
-    public void setSalt(byte[] salt) {
-        this.salt = salt;
-    }
-
+    
     public String getClassName() {
         return className;
     }
@@ -63,22 +45,43 @@ public class User {
     public void setDept(String dept) {
         this.dept = dept;
     }
-
-    public User(Integer id,String user, String className, String dept, byte[] hash, byte[] salt) {
-        this.id=id;
-        this.user = user;
-        this.className = className;
-        this.dept = dept;
-        this.hash = hash;
-        this.salt = salt;
+    
+    public String getName(){
+        return name;
     }
     
-    public boolean authenticate(String attemptedPwd){
-       try {
-           return PBKDF2WithHmacSHA512.authenticate(attemptedPwd, salt, hash);
-       } catch (Exception ex) {
-           System.out.println("Autentication Error: " + ex);
-       }
-       return false;
+    public void setName(String name){
+        this.name = name;
     }
+    
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public User(String user,String email, String className, String dept,String name, Role role) {
+        this.user = user;
+        this.email = email;
+        this.className = className;
+        this.dept = dept;
+        this.name = name;
+        this.role = role;
+    }
+    
+    public User(String user,String email, String className, String dept, String name){
+        this(user,email,className,dept,name,null);
+    }
+    
+    public User(){
+        this("",null,null,null,null,null);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "user=" + user + ", email=" + email + ", className=" + className + ", dept=" + dept + ", name=" + name + ", role=" + role + '}';
+    }
+    
 }

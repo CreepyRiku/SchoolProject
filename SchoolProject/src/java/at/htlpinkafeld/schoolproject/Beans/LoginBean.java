@@ -8,28 +8,26 @@ package at.htlpinkafeld.schoolproject.Beans;
 import at.htlpinkafeld.schoolproject.POJO.Schools;
 import at.htlpinkafeld.schoolproject.POJO.User;
 import at.htlpinkafeld.schoolproject.Services.Service;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 public class LoginBean {
-    private Service<User> srv;
-    private String selectedSchool,
-                   errorMsg = "";
-    private User user;
+    private String errorMsg = "";
+    private Schools selectedSchool;
+    private User user = new User();
+    private Service srv;
     
     public LoginBean() {
-        selectedSchool = Schools.values()[0].getName();
+        selectedSchool = Schools.values()[0];
     }
-
+    
+    public void setSrv(Service s){
+        srv=s;
+    }
+    
     public String getErrorMsg() {
         return errorMsg;
-    }
-
-    public void setSrv(Service<User> srv) {
-        this.srv = srv;
     }
     
     public List<SelectItem> getSchoolList(){
@@ -40,31 +38,48 @@ public class LoginBean {
     }
 
     public String getSelectedSchool() {
-        return selectedSchool;
+        return selectedSchool.getName();
     }
 
     public void setSelectedSchool(String selectedSchool) {
-        this.selectedSchool = selectedSchool;
+        this.selectedSchool = Schools.getByName(selectedSchool);
     }
 
-    public User getUser() {
-        return user;
+    public String getUser() {
+        return user.getUser();
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(String user) {
+        if(user.length()==4)
+            this.user=srv.getTeacher(user);
+        else
+            this.user=srv.getPupil(capitalize(user));
     }
     
-    public void authenticate(String pwd){
+    private String capitalize(String s){
+        List<String> tmp = new ArrayList<>();
+        String tmpS = "";
+        for(char each : s.toCharArray())
+            if(each!='.')
+                tmpS+=each;
+            else{
+                tmp.add(tmpS);
+                tmpS="";
+            }
+        tmp.add(tmpS); 
+        
+        return ("" + tmp.get(0).charAt(0)).toUpperCase() + tmp.get(0).substring(1) + "." + ("" + tmp.get(1).charAt(0)).toUpperCase() + tmp.get(1).substring(1);
+    }
+    
+    public Object authenticate(String pwd){
         if(user==null)
-            errorMsg = "User nicht in dieser Schule!";
+            errorMsg = "User nicht in dieser Schule vorhanden!";
         else
-            if(user.authenticate(pwd)){
+            if(srv.authenticate(user, pwd)){
                 errorMsg="";
-                try {
-                    FacesContext.getCurrentInstance().getExternalContext().dispatch("/voting.xhtml");
-                } catch (IOException ex) {}
+                return "success";
             }else
                 errorMsg = "Falsches Loginpasswort!";
+        return "failure";
     }
 }

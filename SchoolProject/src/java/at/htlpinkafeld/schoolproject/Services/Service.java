@@ -5,13 +5,21 @@
  */
 package at.htlpinkafeld.schoolproject.Services;
 
+import at.htlpinkafeld.schoolproject.POJO.User;
 import java.util.List;
 
 /**
  *
  * @author JulianGanster
+ * 
+ * The Service interface which allows to authenticate a User
+ * and to change the user's passwords if the user would forget it
  */
 public interface Service<T> {
-    public List<T> getList();
-    public T get(Integer idx);
+    public User getPupil(String user);
+    public User getTeacher(String user);
+    public List<User> getPupilList();
+    public List<User> getTeacherList();
+    public Boolean authenticate(User u,String attemptedPwd);
+    
 }
