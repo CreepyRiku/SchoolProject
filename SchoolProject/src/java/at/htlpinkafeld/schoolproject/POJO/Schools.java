@@ -12,8 +12,8 @@ import at.htlpinkafeld.schoolproject.util.PBKDF2WithHmacSHA512;
 public enum Schools {
     HTLuVa_Pinkafeld("HTLuVa Pinkafeld");
     
-    private String name;
-    private Service accSrv;
+    private String name,
+                   srvName;
     
     public String getName() {
         return name;
