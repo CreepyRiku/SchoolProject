@@ -6,7 +6,8 @@
     </context-param>
     <context-param>
         <param-name>javax.faces.CONFIG_FILES</param-name>
-        <param-value>/WEB-INF/TempBean.xml</param-value>
+        <param-value>/WEB-INF/TempBean.xml,
+            /WEB-INF/faces-config1.xml</param-value>
     </context-param>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>

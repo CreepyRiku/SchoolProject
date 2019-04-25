@@ -10,17 +10,22 @@ import at.htlpinkafeld.schoolproject.Services.Service;
 import at.htlpinkafeld.schoolproject.util.PBKDF2WithHmacSHA512;
 
 public enum Schools {
-    HTLuVa_Pinkafeld("HTLuVa Pinkafeld");
+    HTLuVa_Pinkafeld("HTLuVa Pinkafeld","userLDAPService");
     
     private String name,
-                   srvName;
+                   srvName; //TODO get a list of all Beans to find the right service for each school. YEET!
     
     public String getName() {
         return name;
     }
+    
+    public String getSrvName(){
+        return srvName;
+    }
 
-    private Schools(String name){
+    private Schools(String name,String srv){
         this.name=name;
+        srvName=srv;
     }
     
     public static Schools getByName(String name){

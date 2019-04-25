@@ -8,8 +8,15 @@ package at.htlpinkafeld.schoolproject.Beans;
 import at.htlpinkafeld.schoolproject.POJO.Schools;
 import at.htlpinkafeld.schoolproject.POJO.User;
 import at.htlpinkafeld.schoolproject.Services.Service;
+import com.sun.faces.application.ApplicationAssociate;
+import com.sun.faces.mgbean.BeanBuilder;
+import com.sun.faces.mgbean.BeanManager;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 public class LoginBean {
@@ -82,4 +89,19 @@ public class LoginBean {
                 errorMsg = "Falsches Loginpasswort!";
         return "failure";
     }
+    
+//    private void assignService(){ TODO
+//        BeanManager beanManager = ApplicationAssociate.getInstance(FacesContext.getCurrentInstance().getExternalContext()).getBeanManager();
+//        Set<Entry<String, BeanBuilder>>beanEntries = beanManager.getRegisteredBeans().entrySet();
+//
+//        for (Entry<String, BeanBuilder> bean: beanEntries) {
+//            String beanName = bean.getKey();
+//            if (beanManager.isManaged(beanName)) {
+//                if(beanName.equals(selectedSchool.getSrvName())){
+//                   BeanBuilder builder = bean.getValue();
+//                   builder.
+//                }
+//            }
+//        }
+//    }
 }
