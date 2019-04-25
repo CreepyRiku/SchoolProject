@@ -1,15 +1,6 @@
-## Welcome to GitHub Pages
-
-You can use the [editor on GitHub](https://github.com/CreepyRiku/SchoolProject/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
+## Welcome to the official E-Voting Github Project
+### Important Links
+  [Jaysypt-1.9.2](https://onedrive.live.com/embed?cid=4174380B78F9F556&resid=4174380B78F9F556%219657&authkey=AKup-30g1Vwaypk)
 
 # Header 1
 ## Header 2
