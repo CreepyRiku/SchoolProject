@@ -16,10 +16,10 @@ import java.util.List;
  * and to change the user's passwords if the user would forget it
  */
 public interface Service<T> {
-    public User getPupil(String user);
-    public User getTeacher(String user);
-    public List<User> getPupilList();
-    public List<User> getTeacherList();
+    public T getPupil(String user);
+    public T getTeacher(String user);
+    public List<T> getPupilList();
+    public List<T> getTeacherList();
     public Boolean authenticate(User u,String attemptedPwd);
     
 }

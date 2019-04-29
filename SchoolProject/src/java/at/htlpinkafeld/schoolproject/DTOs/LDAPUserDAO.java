@@ -31,7 +31,7 @@ public class LDAPUserDAO implements DAO<User>{
                             constructionClasses = null;
     private final String studentSearchBase = "dc=htlpinkafeld,dc=at";
     private final String teacherSearchBase = "ou=Lehrpersonal,ou=verwaltung,dc=htlpinkafeld,dc=at";
-    private final String adminPwd = "bfoPOaO+3/bYybcAZcb5sxaA7EIwL+sE";
+    private final String adminPwd = "GIJoqnMpIdys4i5YkurSivKbTlvo7j7xouaia8qmWV8=";
     private final String adminEmail = "julian.ganster@htlpinkafeld.at";
     private final StandardPBEStringEncryptor e = new StandardPBEStringEncryptor ();
     public static final String DOMAIN = "htlpinkafeld.at";
@@ -47,7 +47,6 @@ public class LDAPUserDAO implements DAO<User>{
     
     boolean isTeacher;
 
-	//Falls ein Objekt von ADConn zurückgeliefert wird, dann heißt es, dass die Kombination aus Email und Passwort übereinstimmt
     public LDAPUserDAO() throws NamingException { 
         e.setPassword("Yeet");
         properties = new Properties();
@@ -148,7 +147,7 @@ public class LDAPUserDAO implements DAO<User>{
                 String mail = "";
                 if(emailAttribute!=null)
                     mail = emailAttribute.get().toString();
-                User userTmp = new User(mail.replace("@htlpinkafeld.at", ""),mail,className,dept,nameAttribute.toString());
+                User userTmp = new User(mail.replace("@htlpinkafeld.at", ""),mail,className.replace("OU=", ""),dept.replace("Klassen,ou=", ""),nameAttribute.toString());
                 userTmp.setRole(Role.PUPIL);
                 list.add(userTmp);
             }

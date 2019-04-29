@@ -22,14 +22,14 @@ import javax.faces.model.SelectItem;
 public class LoginBean {
     private String errorMsg = "";
     private Schools selectedSchool;
-    private User user = new User();
-    private Service srv;
+    private User user = new User(); //IMPORTANT: Otherwise NullPointerException
+    private Service<User> srv;
     
     public LoginBean() {
         selectedSchool = Schools.values()[0];
     }
     
-    public void setSrv(Service s){
+    public void setSrv(Service<User> s){
         srv=s;
     }
     

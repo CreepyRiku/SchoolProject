@@ -5,12 +5,40 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
         <title>Vote</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+    </h:head>
     <body>
-        <div>Yeet</div>
+        <div align="center">
+            <h1> Klassensprecherwahl </h1>
+            <h:form>
+                <div align="center">
+                        <h:dataTable value="#{votingBean.candidates}" var="c">
+                            <h:column>
+                                <h:outputText value="#{c.cand.firstName} #{c.cand.lastName}"/>
+                            </h:column>
+                            <h:column>
+                                <f:ajax event="valueChange" execute="@all" render="@all">
+                                    <h:selectOneRadio id="points" value="#{c.points}" valueChangeListener="#{votingBean.pointChangeListener}">
+                                        <f:selectItems value="#{votingBean.values}"/>
+                                    </h:selectOneRadio>
+                                </f:ajax>
+                            </h:column>
+                            <f:facet name="footer">
+                                <div align="right">
+                                    <br/>
+                                    <h:commandButton value="Stimme abgeben" action="#{votingBean.submit()}"/>
+                                </div>
+                            </f:facet>
+                        </h:dataTable>
+                    <br/>
+                    <h:messages/>
+                </div>
+            </h:form>  
+        </div>
     </body>
 </html>
