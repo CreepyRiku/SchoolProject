@@ -29,6 +29,7 @@ public class VotingBean {
     private Election election;
     private List<CandidateElection> cList;
     private List<SelectItem> values;
+    private Integer candId;
     
     @PostConstruct
     public void initialize(){
@@ -71,13 +72,11 @@ public class VotingBean {
                 count=1;
         if(tmp!=0){
             for(CandidateElection each : cList){
-                for(int i = count;i<cList.size();i++){
-                    if(each.getPoints()==cList.get(i).getPoints()){
-                        id=each.getCand().getId();
-                        break;
-                    }
+                for(CandidateElection ele : cList){
+                    if(!each.equals(ele))
+                        if(each.getPoints()==ele.getPoints() && each.getCand().getId()!=candId)
+                            id=each.getCand().getId();
                 }
-                count++;
             }
             if(id!=null){
                CandidateElection cand=null;
@@ -89,6 +88,10 @@ public class VotingBean {
                cand.setPoints(0);
             }
         }
+    }
+    
+    public void setCandId(Integer id){
+        candId=id;
     }
     
     public List<SelectItem> getValues(){
