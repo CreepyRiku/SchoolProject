@@ -7,6 +7,7 @@
 package at.htlpinkafeld.schoolproject.util;
 
 import at.htlpinkafeld.schoolproject.DTOs.LDAPUserDAO;
+import at.htlpinkafeld.schoolproject.POJO.User;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import javax.naming.NamingException;
@@ -14,6 +15,6 @@ import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 
 public class LDAPTest {
     public static void main(String[] args) throws NamingException, NoSuchAlgorithmException, InvalidKeySpecException{
-        new LDAPUserDAO();
+        LDAPUserDAO l = new LDAPUserDAO();
     }
 }

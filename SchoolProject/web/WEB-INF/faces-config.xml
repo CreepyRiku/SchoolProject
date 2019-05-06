@@ -14,8 +14,32 @@
     </managed-bean>
     
     <managed-bean>
+        <managed-bean-name>votingBean</managed-bean-name>
+        <managed-bean-class>at.htlpinkafeld.schoolproject.Beans.VotingBean</managed-bean-class>
+         <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>bean</property-name>
+            <value>#{loginBean}</value>
+        </managed-property>  
+        <managed-property>
+            <property-name>archive</property-name>
+            <value>#{archive}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>srv</property-name>
+            <value>#{userLDAPService}</value>
+        </managed-property>  
+    </managed-bean>
+    
+    <managed-bean>
         <managed-bean-name>userLDAPService</managed-bean-name>
         <managed-bean-class>at.htlpinkafeld.schoolproject.Services.LDAPUserService</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>archive</managed-bean-name>
+        <managed-bean-class>at.htlpinkafeld.schoolproject.DTOs.TestDAO</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     
