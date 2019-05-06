@@ -24,6 +24,7 @@ and open the template in the editor.
                             <h:column>
                                 <f:ajax event="valueChange" execute="@all" render="@all">
                                     <h:selectOneRadio id="points" value="#{c.points}" valueChangeListener="#{votingBean.pointChangeListener}">
+                                        <f:valueChangeListener binding="#{votingBean.setCandId(c.cand.id)}"/>
                                         <f:selectItems value="#{votingBean.values}"/>
                                     </h:selectOneRadio>
                                 </f:ajax>
