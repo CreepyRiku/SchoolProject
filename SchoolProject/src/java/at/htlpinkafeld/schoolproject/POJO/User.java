@@ -10,9 +10,9 @@ public class User {
    private String user,
                   email,
                   className,
-                  dept,
                   name;
    private Role role;
+   private Departments dept;
    
     public String getUser() {
         return user;
@@ -38,11 +38,11 @@ public class User {
         this.className = className;
     }
 
-    public String getDept() {
+    public Departments getDept() {
         return dept;
     }
 
-    public void setDept(String dept) {
+    public void setDept(Departments dept) {
         this.dept = dept;
     }
     
@@ -66,7 +66,10 @@ public class User {
         this.user = user;
         this.email = email;
         this.className = className;
-        this.dept = dept;
+        if(!dept.isEmpty())
+            this.dept = Departments.valueOf(dept);
+        else
+            this.dept=null;
         this.name = name;
         this.role = role;
     }

@@ -13,6 +13,7 @@ public class Candidate {
                    lastName,
                    className,
                    year;
+    private Boolean deleted;
 
     public Candidate(Integer id, String firstName, String lastName, String className, String year) {
         this.id = id;
@@ -21,6 +22,12 @@ public class Candidate {
         this.lastName = lastName;
         this.className = className;
         this.year = year;
+        this.deleted=false;
+    }
+    
+    public Candidate(Integer id,String fName,String lName,String className,String year,Boolean deleted){
+        this(id,fName,lName,className,year);
+        this.deleted=deleted;
     }
 
     public Integer getId() {
@@ -70,6 +77,12 @@ public class Candidate {
     public void setPoints(Integer points) {
         this.points = points;
     }
-    
-    
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
 }

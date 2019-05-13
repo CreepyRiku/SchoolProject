@@ -9,5 +9,6 @@ package at.htlpinkafeld.schoolproject.POJO;
 public enum Status {
     Created,
     Acitve,
-    Finished;
+    Finished,
+    Deleted;
 }
