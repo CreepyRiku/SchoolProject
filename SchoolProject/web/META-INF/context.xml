@@ -1,2 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/SchoolProject"/>
+<Context path="/SchoolProject">
+    <Resource name="E_Voting"
+        auth="Container"
+        type="javax.sql.DataSource"
+        username="EVoting"
+        password="bU+o*peC=up14R*0"
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://193.170.45.133:3306/E_Voting"
+        maxWaitMillis="10000"
+        maxTotal="8"
+        maxIdle="4"
+    />
+</Context>

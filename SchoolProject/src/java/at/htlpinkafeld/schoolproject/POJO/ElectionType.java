@@ -7,8 +7,13 @@
 package at.htlpinkafeld.schoolproject.POJO;
 
 public enum ElectionType {
-    KS(2),
-    KS_SW(2);
+    //Ksp=Klassensprecher,ASp=Abteilungssprecher,SSp=Schulsprecher,SW=Stichwahl
+    KSp(2),     
+    KSp_SW(2),
+    ASp(6),
+    ASp_SW(6),
+    SSp(6),
+    SSp_SW(6);
     
     private int max_points;
     

@@ -12,17 +12,24 @@ public class Election {
     private Integer id;
     private ElectionType type;
     private Status status;
-    private String allowedClass; //brechtigte Klassen für die Wahl 
+    private String allowedClass; //brechtigte Klassen für die Wahl; null bedeutet jede Klasse
     private String year; //Jahrgang
+    private Departments dept; //berechtige Abteilung für die Wahl; null bedeutet jede Abteilung
     private List<Candidate> canList;
     
-    public Election(Integer id,ElectionType t, String classes,String year,List<Candidate> l){
+    public Election(Integer id,ElectionType t, String classes,String year,Departments dept,List<Candidate> l){
         this.id=id;
         this.type=t;
         this.status=Status.Created;
         this.allowedClass = classes;
+        this.dept=dept;
         this.year = year;
         this.canList = l;
+    }
+    
+    public Election(Integer id,ElectionType t,Status s,String year){
+        this(id,t,null,year,null,null);
+        this.status=s;
     }
 
     public Integer getId() {
@@ -71,5 +78,13 @@ public class Election {
 
     public void setCanList(List<Candidate> canList) {
         this.canList = canList;
+    }
+
+    public Departments getDept() {
+        return dept;
+    }
+
+    public void setDept(Departments dept) {
+        this.dept = dept;
     }
 }

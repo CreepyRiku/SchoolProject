@@ -7,6 +7,7 @@
 package at.htlpinkafeld.schoolproject.DTOs;
 
 import at.htlpinkafeld.schoolproject.POJO.Candidate;
+import at.htlpinkafeld.schoolproject.POJO.Departments;
 import at.htlpinkafeld.schoolproject.POJO.Election;
 import at.htlpinkafeld.schoolproject.POJO.ElectionType;
 import at.htlpinkafeld.schoolproject.POJO.User;
@@ -22,7 +23,7 @@ public class TestDAO{
         cList.add(new Candidate(1,"Hans","Juergen","4BHIF","2018/19"));
         cList.add(new Candidate(2,"Fridolin","Hausmeister","4BHIF","2018/19"));
         
-        eList.add(new Election(1,ElectionType.KS,"4BHIF","2018/19",cList));
+        eList.add(new Election(1,ElectionType.KSp,"4BHIF","2018/19",Departments.Informatik,cList));
     }
     
     public List<Election> getAvailableElections(User u){

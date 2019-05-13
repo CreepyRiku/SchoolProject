@@ -13,10 +13,10 @@ import java.util.List;
  * @author JulianGanster
  */
 public interface DAO<T> {
-    public User getPupil(String user);
-    public User getTeacher(String user);
-    public List<User> getPupilList();
-    public List<User> getTeacherList();
-    public Boolean authenticate(User u,String attemptedPwd);
+    public T getPupil(String user);
+    public T getTeacher(String user);
+    public List<T> getPupilList();
+    public List<T> getTeacherList();
+    public Boolean authenticate(T u,String attemptedPwd);
     public void refresh();
 }

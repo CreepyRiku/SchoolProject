@@ -6,6 +6,7 @@
 
 package at.htlpinkafeld.schoolproject.DTOs;
 
+import at.htlpinkafeld.schoolproject.POJO.Departments;
 import at.htlpinkafeld.schoolproject.POJO.Role;
 import at.htlpinkafeld.schoolproject.POJO.User;
 import java.util.ArrayList;
@@ -24,7 +25,6 @@ import javax.naming.directory.SearchResult;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 
 public class LDAPUserDAO implements DAO<User>{
-    private final String[] departments = {"Informatik","elektronik","Gebäudetechnik","bautechnik"};
     private  List<String>   itClasses = null,
                             etClasses = null,
                             buildingClasses = null,
@@ -75,21 +75,21 @@ public class LDAPUserDAO implements DAO<User>{
     }
     
     private void fillClassesList(){
-        for(String each : departments)
+        for(String each : Departments.print().split(","))
             fillClassesList(each);
     }
     
     private void fillClassesList(String dept){
         List<String> tmp = new ArrayList<>();
         String searchBase = null;
-        if(dept.equals(departments[0])) //Informatik
-            searchBase = "ou=Klassen,ou=" + departments[0] + "," + studentSearchBase;
-        if(dept.equals(departments[1])) //Elektronik
-            searchBase = "ou=" + departments[1] + "," + studentSearchBase;
-        if(dept.equals(departments[2])) //Gebaeudetechnik
-            searchBase = "ou=" + departments[2] + "," + studentSearchBase;
-        if(dept.equals(departments[3])) //Bautechnik
-            searchBase = "ou=" + departments[3] + "," + studentSearchBase;
+        if(dept.equals(Departments.Informatik.name())) //Informatik
+            searchBase = "ou=Klassen,ou=" + Departments.Informatik.name() + "," + studentSearchBase;
+        if(dept.equals(Departments.elektronik.name())) //Elektronik
+            searchBase = "ou=" + Departments.elektronik.name() + "," + studentSearchBase;
+        if(dept.equals(Departments.Gebäudetechnik.name())) //Gebaeudetechnik
+            searchBase = "ou=" + Departments.Gebäudetechnik.name() + "," + studentSearchBase;
+        if(dept.equals(Departments.bautechnik.name())) //Bautechnik
+            searchBase = "ou=" + Departments.bautechnik.name() + "," + studentSearchBase;
         try {
             NamingEnumeration<SearchResult> resultEnum = this.dirContext.search(searchBase, "(objectclass=*)",this.searchCtls);
             while(resultEnum.hasMore()){
@@ -99,13 +99,13 @@ public class LDAPUserDAO implements DAO<User>{
                     tmp.add(name);
             }
 
-            if(dept.equals(departments[0])) //Informatik
+            if(dept.equals(Departments.Informatik.name())) //Informatik
                 itClasses=tmp;
-            if(dept.equals(departments[1])) //Elektronik
+            if(dept.equals(Departments.elektronik.name())) //Elektronik
                 etClasses=tmp;
-            if(dept.equals(departments[2])) //Gebaeudetechnik
+            if(dept.equals(Departments.Gebäudetechnik.name())) //Gebaeudetechnik
                 buildingClasses=tmp;
-            if(dept.equals(departments[3])) //Bautechnik
+            if(dept.equals(Departments.bautechnik.name())) //Bautechnik
                 constructionClasses=tmp;
          } catch (NamingException ex) {
             System.out.println(ex.getMessage());
@@ -116,19 +116,19 @@ public class LDAPUserDAO implements DAO<User>{
         if(pList==null)
             pList = new ArrayList<>();
         for(String each : itClasses){
-            for(User ele : getList("Klassen,ou=" + departments[0],each))
+            for(User ele : getList("Klassen,ou=" + Departments.Informatik.name(),each))
                 pList.add(ele);
         }
         for(String each : etClasses){
-            for(User ele : getList(departments[1],each))
+            for(User ele : getList(Departments.elektronik.name(),each))
                 pList.add(ele);
         }
         for(String each : buildingClasses){
-            for(User ele : getList(departments[2],each))
+            for(User ele : getList(Departments.Gebäudetechnik.name(),each))
                 pList.add(ele);
         }
         for(String each : constructionClasses){
-            for(User ele : getList(departments[3],each))
+            for(User ele : getList(Departments.bautechnik.name(),each))
                 pList.add(ele);
         }
     }
